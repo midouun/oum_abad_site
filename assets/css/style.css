@@ -1,0 +1,203 @@
+/* =================== VARIABLES & BASIC SETUP =================== */
+:root {
+  --primary-color: #2c3e50;      /* Midnight Blue */
+  --secondary-color: #c79100;    /* Gold */
+  --background-color: #fdfdfd;
+  --surface-color: #ffffff;
+  --text-color: #333;
+  --light-text-color: #fff;
+  --subtle-bg-color: #f7f9f9;
+  --border-color: #e8e8e8;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+  --font-main: 'Cairo', sans-serif;
+  --font-serif: 'Amiri', serif;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-main); margin: 0; padding-top: 80px; background-color: var(--background-color); color: var(--text-color); line-height: 1.8; -webkit-font-smoothing: antialiased; }
+
+/* =================== HEADER & NAVBAR =================== */
+#main-header { position: fixed; top: 0; width: 100%; z-index: 1000; background-color: rgba(255, 255, 255, 0.97); backdrop-filter: blur(12px); box-shadow: 0 2px 10px rgba(0,0,0,0.05); transition: top 0.4s ease; }
+#navbar { display: flex; justify-content: space-between; align-items: center; padding: 1rem 3rem; max-width: 1400px; margin: 0 auto; }
+.logo { font-family: var(--font-serif); font-size: 1.8rem; font-weight: 700; color: var(--primary-color); text-decoration: none; }
+
+.nav-links { list-style: none; display: flex; flex-wrap: wrap; gap: 2rem; margin: 0; padding: 0; }
+.nav-links a { color: var(--text-color); text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: color 0.3s; position: relative; padding-bottom: 5px; white-space: nowrap; }
+.nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: var(--secondary-color); transition: width 0.3s ease; }
+.nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+.nav-links a:hover, .nav-links a.active { color: var(--primary-color); }
+
+#mobile-menu-button { display: none; background: none; border: none; font-size: 1.5rem; color: var(--primary-color); cursor: pointer; }
+
+/* =================== GENERAL CONTENT & SECTIONS =================== */
+.parallax-section { position: relative; min-height: 60vh; display: flex; justify-content: center; align-items: center; text-align: center; color: var(--light-text-color); background-size: cover; background-position: center; background-attachment: fixed; }
+.overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.4)); }
+.content { position: relative; z-index: 2; }
+
+.content-section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; text-align: center; }
+.content-section-colored { background-color: var(--subtle-bg-color); padding: 6rem 2rem; }
+
+h1, h2 { font-family: var(--font-serif); font-weight: 700; }
+h1 { font-size: 3.5rem; text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+h2 { font-size: 2.8rem; color: var(--primary-color); margin-bottom: 1rem; position: relative; display: inline-block; padding-bottom: 10px; }
+h2::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 3px; background-color: var(--secondary-color); }
+.section-intro { font-size: 1.2rem; color: #555; max-width: 800px; margin: 1rem auto 3rem auto; }
+
+/* =================== UNIVERSITY SECTION (GALLERY V2) =================== */
+.image-gallery-v2 { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem; }
+.gallery-item { display: block; overflow: hidden; border-radius: 10px; box-shadow: var(--shadow); position: relative; }
+.gallery-item img { width: 100%; height: 200px; object-fit: cover; display: block; transition: transform 0.4s ease; }
+.gallery-item:hover img { transform: scale(1.1); }
+.gallery-item::after { content: '\f00e'; /* Font Awesome search-plus icon */ font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: 2rem; opacity: 0; transition: opacity 0.4s ease; z-index: 1; }
+.gallery-item:hover::after { opacity: 1; }
+.gallery-item::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); opacity: 0; transition: opacity 0.4s ease; }
+.gallery-item:hover::before { opacity: 1; }
+
+/* =================== LIGHTBOX STYLES (NEW) =================== */
+#lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 2rem; box-sizing: border-box; }
+#lightbox-image { max-width: 90%; max-height: 90%; object-fit: contain; box-shadow: 0 0 40px rgba(0,0,0,0.5); }
+#lightbox-close { position: absolute; top: 2rem; right: 2rem; color: white; font-size: 2.5rem; cursor: pointer; font-weight: bold; } 
+
+/* =================== PROPHET'S WILL SECTION =================== */
+.hadith-chapter { margin-bottom: 4rem; }
+.chapter-title { font-family: var(--font-serif); font-size: 2.2rem; color: var(--secondary-color); text-align: right; margin-bottom: 2rem; border-bottom: 2px solid var(--border-color); padding-bottom: 1rem; }
+.hadith-card-v2 { background-color: var(--surface-color); border-radius: 15px; box-shadow: var(--shadow); padding: 2.5rem; padding-top: 2rem; text-align: right; margin-bottom: 2rem; position: relative; border-top: 4px solid var(--primary-color); }
+.hadith-icon { position: absolute; top: -20px; right: 50%; transform: translateX(50%); background-color: var(--primary-color); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+.hadith-text-v2 { font-family: var(--font-serif); font-size: 1.6rem; line-height: 2.2; margin-top: 1.5rem; margin-bottom: 1.5rem; color: #222; }
+.hadith-source-v2, .hadith-explanation-v2 { font-size: 1rem; line-height: 1.8; color: #555; }
+.hadith-explanation-v2 { margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed var(--border-color); }
+.hadith-source-v2 b, .hadith-explanation-v2 b { color: var(--primary-color); }
+
+/* =================== NAWAWI EXPLANATION SECTION =================== */
+#nawawi-sharh .accordion { max-width: 900px; margin: 2rem auto; }
+.accordion-item { border-bottom: 1px solid var(--border-color); }
+.accordion-header { background-color: var(--surface-color); border: none; width: 100%; text-align: right; padding: 1.5rem; font-family: var(--font-serif); font-size: 1.4rem; font-weight: 700; color: var(--primary-color); cursor: pointer; transition: background-color 0.3s; position: relative; }
+.accordion-header::after { content: '\f078'; font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; left: 1.5rem; transition: transform 0.3s; }
+.accordion-header.active::after { transform: rotate(180deg); }
+.accordion-header:hover { background-color: var(--subtle-bg-color); }
+.accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out, padding 0.4s ease-out; background-color: #fff; }
+.accordion-content .hadith-text-nawawi { font-family: var(--font-serif); font-size: 1.5rem; line-height: 2.1; padding: 1.5rem 1.5rem 0; margin: 0; text-align: right; color: #222; }
+.accordion-content .hadith-explanation-nawawi { font-family: var(--font-main); font-size: 1.1rem; line-height: 1.9; padding: 1.5rem; margin: 0; text-align: right; border-top: 1px dashed var(--border-color); margin-top: 1.5rem; }
+.hadith-explanation-nawawi b { color: var(--primary-color); }
+
+/* =================== AUDIO LIBRARY SECTION =================== */
+#audio-library { order: 1; } /* Ensure it comes before visual library if placed after */
+.audio-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; margin-top: 3rem; }
+.audio-card { background-color: var(--surface-color); border-radius: 10px; box-shadow: var(--shadow); padding: 2rem; text-align: center; transition: transform 0.3s; }
+.audio-card:hover { transform: translateY(-10px); }
+.audio-card-icon { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1rem; }
+.audio-title { font-family: var(--font-serif); font-size: 1.4rem; color: var(--primary-color); margin: 0 0 0.5rem 0; }
+.audio-card audio { width: 100%; margin-top: 1rem; }
+
+/* =================== VISUAL LIBRARY SECTION (NEW) =================== */
+.video-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+.video-card { background-color: var(--surface-color); border-radius: 10px; box-shadow: var(--shadow); padding: 1.5rem; text-align: center; transition: transform 0.3s; }
+.video-card:hover { transform: translateY(-5px); }
+.video-title { font-family: var(--font-serif); font-size: 1.3rem; color: var(--primary-color); margin: 0 0 1rem 0; }
+.video-card video { width: 100%; height: auto; border-radius: 8px; }
+
+/* =================== CONTACT SECTION =================== */
+#contact h2 { margin-bottom: 2rem; }
+#contact p { margin-bottom: 3rem; }
+.contact-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
+.contact-link { background-color: var(--primary-color); color: var(--light-text-color); padding: 1rem 2.5rem; border-radius: 50px; text-decoration: none; font-weight: 700; transition: background-color 0.3s, transform 0.3s; display: flex; align-items: center; gap: 1rem; font-size: 1.1rem; }
+.contact-link:hover { background-color: var(--secondary-color); transform: translateY(-5px); }
+.contact-link i { font-size: 1.5rem; }
+
+/* =================== FOOTER & SCROLL-TO-TOP =================== */
+#main-footer { background-color: var(--primary-color); color: var(--light-text-color); text-align: center; padding: 2rem; margin-top: 4rem; }
+#scroll-to-top { display: none; position: fixed; bottom: 20px; right: 20px; background-color: var(--primary-color); color: white; border: none; border-radius: 50%; width: 50px; height: 50px; font-size: 1.2rem; cursor: pointer; z-index: 1001; opacity: 0; transform: scale(0.8); transition: all 0.3s; }
+#scroll-to-top:hover { background-color: var(--secondary-color); transform: scale(1.1); }
+#scroll-to-top.visible { display: flex; align-items: center; justify-content: center; opacity: 1; transform: scale(1); }
+
+/* =================== RESPONSIVE DESIGN =================== */
+@media (max-width: 1024px) {
+  .nav-links { gap: 1.5rem; }
+  .nav-links a { font-size: 0.9rem; }
+}
+
+@media (max-width: 768px) {
+  body { padding-top: 70px; }
+  .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background-color: white; box-shadow: 0 10px 20px rgba(0,0,0,0.1); padding: 1rem 0; }
+  .nav-links.mobile-nav-active { display: flex; }
+  .nav-links a { padding: 1rem 2rem; }
+  #mobile-menu-button { display: block; }
+
+  #navbar { padding: 1rem 1.5rem; }
+  h1 { font-size: 2.5rem; }
+  h2 { font-size: 2.2rem; }
+  .content-section, .content-section-colored { padding: 4rem 1rem; }
+}
+/* =================== READ WITH MISK SECTION =================== */
+#read-with-misk {
+    text-align: right;
+}
+
+#read-with-misk h2 {
+    margin-bottom: 2rem;
+}
+
+.read-content {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.2rem;
+    line-height: 2;
+    color: #333;
+}
+/* =================== READ WITH MISK ACCORDION =================== */
+#read-with-misk .accordion {
+    max-width: 900px;
+    margin: 2rem auto;
+}
+
+#read-with-misk .accordion-item {
+    border-bottom: 1px solid var(--border-color);
+}
+
+#read-with-misk .accordion-header {
+    background-color: var(--surface-color);
+    border: none;
+    width: 100%;
+    text-align: right;
+    padding: 1.5rem;
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: background-color 0.3s;
+    position: relative;
+}
+
+#read-with-misk .accordion-header::after {
+    content: '\f078';
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    left: 1.5rem;
+    transition: transform 0.3s;
+}
+
+#read-with-misk .accordion-header.active::after {
+    transform: rotate(180deg);
+}
+
+#read-with-misk .accordion-header:hover {
+    background-color: var(--subtle-bg-color);
+}
+
+#read-with-misk .accordion-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+    background-color: #fff;
+    text-align: right;
+}
+
+#read-with-misk .accordion-body p {
+    font-family: var(--font-main);
+    font-size: 1.1rem;
+    line-height: 1.9;
+    padding: 1.5rem;
+    margin: 0;
+}
