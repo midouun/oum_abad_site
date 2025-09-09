@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Exit immediately if a command exits with a non-zero status.
+set -e
+
+# 1. Check for GITHUB_TOKEN environment variable
+if [ -z "$GITHUB_TOKEN" ]; then
+  echo "⚠️ ضع التوكن في متغير البيئة GITHUB_TOKEN"
+  exit 1
+fi
+
+# 2. Git operations
+echo "🔄 Starting site update..."
+
+git add .
+git commit -m "Fix: Remove hardcoded token and update site $(date +'%Y-%m-%d')"
+git push
+
+echo "✅ Update complete."
